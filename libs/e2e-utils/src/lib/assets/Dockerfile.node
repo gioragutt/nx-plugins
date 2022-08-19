@@ -1,0 +1,9 @@
+FROM node:lts
+
+ARG APP_NAME
+
+WORKDIR /usr/src/app
+COPY ./ /usr/src/app/
+RUN yarn nx build ${APP_NAME} --configuration=production
+WORKDIR /usr/src/app/dist/apps/${APP_NAME}
+CMD ["node", "main.js"]

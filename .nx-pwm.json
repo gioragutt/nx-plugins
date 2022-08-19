@@ -1,0 +1,23 @@
+{
+  "$schema": "./node_modules/nx-pwm/config-schema.json",
+  "versionType": "synced",
+  "depcheck": {
+    "ignore": {
+      "discrepancies": {
+        "*": ["js-yaml"]
+      },
+      "missing": {
+        "*": [],
+        "nx-blackbox": ["ejs"]
+      }
+    }
+  },
+  "versionCheck": {
+    "versionsFiles": {
+      "scopes": ["golevelup"]
+    }
+  },
+  "localRegistry": {
+    "verdaccioConfig": ".verdaccio/config.yml"
+  }
+}

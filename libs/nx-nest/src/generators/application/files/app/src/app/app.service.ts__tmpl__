@@ -1,0 +1,10 @@
+import { Injectable } from '@nestjs/common';
+
+import { MessageDto } from './message.dto';
+
+@Injectable()
+export class AppService {
+  getData(): MessageDto {
+    return { message: 'Welcome to <%= projectDirectory %>!' };
+  }
+}

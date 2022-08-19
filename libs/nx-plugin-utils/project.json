@@ -1,0 +1,38 @@
+{
+  "sourceRoot": "libs/nx-plugin-utils/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/nx-plugin-utils",
+        "tsConfig": "libs/nx-plugin-utils/tsconfig.lib.json",
+        "packageJson": "libs/nx-plugin-utils/package.json",
+        "main": "libs/nx-plugin-utils/src/index.ts",
+        "assets": ["libs/nx-plugin-utils/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/nx-plugin-utils/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/nx-plugin-utils"],
+      "options": {
+        "jestConfig": "libs/nx-plugin-utils/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "depcheck": {
+      "executor": "nx-pwm:depcheck"
+    },
+    "version-check": {
+      "executor": "nx-pwm:version-check"
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@gioragutt/nx-plugin-utils",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "typings": "src/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gioragutt/nx-plugins.git",
+    "directory": "libs/nx-plugin-utils"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "peerDependencies": {
+    "@nrwl/devkit": "*",
+    "@nrwl/node": "*",
+    "js-yaml": "*"
+  }
+}

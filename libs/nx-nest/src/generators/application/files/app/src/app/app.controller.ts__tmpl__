@@ -1,0 +1,16 @@
+import { Controller, Get } from '@nestjs/common';
+import { ApiOAuth2, ApiTags } from '@nestjs/swagger';
+
+import { AppService } from './app.service';
+
+@ApiOAuth2([]) // needed to authenticate in prod
+@ApiTags('Example') // decides on the name of the generated openapi client class name
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get()
+  getData() {
+    return this.appService.getData();
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "sourceRoot": "libs/nx-openapi-client/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/nx-openapi-client",
+        "main": "libs/nx-openapi-client/src/index.ts",
+        "tsConfig": "libs/nx-openapi-client/tsconfig.lib.json",
+        "assets": [
+          "libs/nx-openapi-client/*.md",
+          {
+            "input": "./libs/nx-openapi-client/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/nx-openapi-client/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/nx-openapi-client",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./libs/nx-openapi-client",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/nx-openapi-client/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/nx-openapi-client"],
+      "options": {
+        "jestConfig": "libs/nx-openapi-client/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "depcheck": {
+      "executor": "nx-pwm:depcheck"
+    },
+    "version-check": {
+      "executor": "nx-pwm:version-check"
+    }
+  },
+  "tags": ["type:nx-plugin"]
+}

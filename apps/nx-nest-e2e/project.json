@@ -1,0 +1,14 @@
+{
+  "projectType": "application",
+  "sourceRoot": "apps/nx-nest-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "apps/nx-nest-e2e/jest.config.ts"
+      }
+    }
+  },
+  "tags": ["type:nx-plugin-e2e"],
+  "implicitDependencies": ["nx-nest"]
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "E2eProject",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "project": {
+      "description": "The name of the backend project to test.",
+      "type": "string",
+      "$default": {
+        "$source": "projectName"
+      },
+      "alias": "p",
+      "x-prompt": "What backend app would you like to test?"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the E2E Project (default - `${projectName}-e2e`)"
+    },
+    "port": {
+      "description": "The port the service will be running on",
+      "type": "number"
+    },
+    "tags": {
+      "type": "string",
+      "description": "Add tags to the project (used for linting)",
+      "alias": "t"
+    },
+    "directory": {
+      "type": "string",
+      "description": "A directory where the project is placed",
+      "alias": "d"
+    }
+  },
+  "required": ["project"]
+}

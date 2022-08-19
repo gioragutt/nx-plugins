@@ -1,0 +1,7 @@
+{
+  "name": "<%= name %>",
+  "className": "<%= className %>",
+  "propertyName": "<%= propertyName %>",
+  "constantName": "<%= constantName %>",
+  "fileName": "<%= fileName %>"
+}

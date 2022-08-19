@@ -1,0 +1,26 @@
+{
+  "name": "@gioragutt/nx-workspace",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "typings": "src/index.d.ts",
+  "generators": "./generators.json",
+  "executors": "./executors.json",
+  "nx-migrations": {
+    "migrations": "./migrations.json",
+    "packageGroup": [
+      "@gioragutt/nx-nest",
+      "@gioragutt/nx-blackbox",
+      "@gioragutt/nx-openapi-client",
+      "@gioragutt/nx-plugin-utils"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gioragutt/nx-plugins.git",
+    "directory": "libs/nx-workspace"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

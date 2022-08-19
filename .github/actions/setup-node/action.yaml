@@ -1,0 +1,33 @@
+name: Setup Node
+description: Boilerplate of setting up node
+
+# inputs:
+#   node-auth-token:
+#     description: NODE_AUTH_TOKEN to install npm dependencies with
+#     required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16.x'
+        cache: 'yarn'
+        cache-dependency-path: '**/yarn.lock'
+
+    # - name: Create .npmrc
+    #   shell: bash
+    #   env:
+    #     NODE_AUTH_TOKEN: ${{ inputs.node-auth-token }}
+    #   run: |
+    #     cat $NPM_CONFIG_USERCONFIG | envsubst > .npmrc
+
+    - name: Install dependencies
+      shell: bash
+      run: yarn install --frozen-lockfile --prefer-offline
+
+    - name: Derive appropriate SHAs for base and head for `nx affected` commands
+      uses: nrwl/nx-set-shas@v2
+      with:
+        main-branch-name: ${{ github.base_ref }}

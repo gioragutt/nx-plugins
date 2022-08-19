@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "Wiremock",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "project": {
+      "description": "The name of the backend project to add wiremock to.",
+      "type": "string",
+      "$default": {
+        "$source": "projectName"
+      },
+      "alias": "p",
+      "x-prompt": "What backend e2e test project would you like to add wiremock to?"
+    }
+  },
+  "required": ["project"]
+}

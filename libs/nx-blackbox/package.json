@@ -1,0 +1,23 @@
+{
+  "name": "@gioragutt/nx-blackbox",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "generators": "./generators.json",
+  "executors": "./executors.json",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gioragutt/nx-plugins.git",
+    "directory": "libs/nx-blackbox"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "peerDependencies": {
+    "@nrwl/devkit": "*",
+    "@nrwl/node": "*",
+    "@gioragutt/nx-plugin-utils": "*",
+    "js-yaml": "*"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "sourceRoot": "libs/e2e-utils/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/e2e-utils",
+        "main": "libs/e2e-utils/src/index.ts",
+        "tsConfig": "libs/e2e-utils/tsconfig.lib.json",
+        "assets": ["libs/e2e-utils/*.md", "libs/e2e-utils/src/assets/**/*"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/e2e-utils/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/e2e-utils"],
+      "options": {
+        "jestConfig": "libs/e2e-utils/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

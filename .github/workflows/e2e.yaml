@@ -1,0 +1,52 @@
+name: E2E
+
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  affected:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup node
+        uses: ./.github/actions/setup-node
+
+      - name: Find affected
+        id: find-affected
+        run: echo "::set-output name=affected::$(node ./tools/find-affected.js type:nx-plugin-e2e)"
+
+      - name: Print Affected
+        run: echo ${{ fromJSON(steps.find-affected.outputs.affected).affectedMatrix }}
+
+    outputs:
+      affected: ${{ fromJSON(steps.find-affected.outputs.affected).affectedMatrix }}
+      has-affected: ${{ fromJSON(steps.find-affected.outputs.affected).hasAffected }}
+
+  e2e:
+    needs: affected
+    runs-on: ubuntu-latest
+    if: ${{ fromJSON(needs.affected.outputs.has-affected) }}
+
+    strategy:
+      fail-fast: false # better feedback from e2e runs
+      matrix:
+        app: ${{ fromJSON(needs.affected.outputs.affected) }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup node
+        uses: ./.github/actions/setup-node
+
+      - run: yarn nx e2e ${{ matrix.app }}

@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "OidcServerMock",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "project": {
+        "description": "The name of the backend project to add oidc-server-mock to.",
+        "type": "string",
+        "$default": {
+          "$source": "projectName"
+        },
+        "alias": "p",
+        "x-prompt": "What backend e2e test project would you like to add oidc-server-mock to?"
+      }
+    }
+  },
+  "required": ["project"]
+}

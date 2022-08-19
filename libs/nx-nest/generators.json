@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "nx-nest",
+  "version": "0.0.1",
+  "generators": {
+    "application": {
+      "factory": "./src/generators/application/generator",
+      "schema": "./src/generators/application/schema.json",
+      "description": "Create a NestJS application with our custom changes",
+      "aliases": ["app"],
+      "x-type": "application"
+    }
+  }
+}

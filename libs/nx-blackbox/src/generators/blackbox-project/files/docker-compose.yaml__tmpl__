@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  <%= project %>:
+    build:
+      context: <%= offsetFromRoot %>
+      dockerfile: <%= testedProjectRoot %>/Dockerfile
+      args:
+        APP_NAME: <%= project %>
+    env_file:
+      - blackbox.env<% if (port) { %>
+    ports:
+      - '<%= port %>:<%= port %>'
+<% } %>

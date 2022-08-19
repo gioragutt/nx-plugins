@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "nx-blackbox",
+  "version": "0.0.1",
+  "generators": {
+    "blackbox-project": {
+      "factory": "./src/generators/blackbox-project/generator",
+      "schema": "./src/generators/blackbox-project/schema.json",
+      "description": "Generate an Blackbox project for a a backend app"
+    },
+    "wiremock": {
+      "factory": "./src/generators/wiremock/generator",
+      "schema": "./src/generators/wiremock/schema.json",
+      "description": "Generate wiremock boilerplate to the backend blackbox project"
+    },
+    "oidc-server-mock": {
+      "factory": "./src/generators/oidc-server-mock/generator",
+      "schema": "./src/generators/oidc-server-mock/schema.json",
+      "description": "Generate oidc-server-mock boilerplate to the backend blackbox project"
+    }
+  }
+}

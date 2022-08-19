@@ -1,0 +1,27 @@
+{
+  "name": "@gioragutt/nx-openapi-client",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "generators": "./generators.json",
+  "executors": "./executors.json",
+  "typings": "src/index.d.ts",
+  "scripts": {
+    "publish-if-needed": "npx -y can-npm-publish --verbose && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gioragutt/nx-plugins.git",
+    "directory": "libs/nx-openapi-client"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "peerDependencies": {
+    "@nrwl/devkit": "*",
+    "@nrwl/workspace": "*",
+    "@nrwl/js": "*",
+    "@gioragutt/nx-plugin-utils": "*",
+    "nx": "*"
+  }
+}

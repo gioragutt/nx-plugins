@@ -1,0 +1,27 @@
+{
+  "name": "@gioragutt/nx-nest",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "typings": "src/index.d.ts",
+  "generators": "./generators.json",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gioragutt/nx-plugins.git",
+    "directory": "libs/nx-nest"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "@gioragutt/nx-blackbox": "*",
+    "@gioragutt/nx-plugin-utils": "*",
+    "@gioragutt/nx-openapi-client": "*"
+  },
+  "peerDependencies": {
+    "@nrwl/devkit": "*",
+    "@nrwl/nest": "*",
+    "@nrwl/workspace": "*",
+    "chalk": "*"
+  }
+}

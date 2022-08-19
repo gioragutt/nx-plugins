@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "projects": {
+    "e2e-utils": "libs/e2e-utils",
+    "nx-blackbox": "libs/nx-blackbox",
+    "nx-blackbox-e2e": "apps/nx-blackbox-e2e",
+    "nx-nest": "libs/nx-nest",
+    "nx-nest-e2e": "apps/nx-nest-e2e",
+    "nx-openapi-client": "libs/nx-openapi-client",
+    "nx-openapi-client-e2e": "apps/nx-openapi-client-e2e",
+    "nx-plugin-utils": "libs/nx-plugin-utils",
+    "nx-workspace": "libs/nx-workspace",
+    "nx-workspace-e2e": "apps/nx-workspace-e2e"
+  }
+}

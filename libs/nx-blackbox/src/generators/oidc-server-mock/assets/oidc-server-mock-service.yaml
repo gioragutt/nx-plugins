@@ -1,0 +1,28 @@
+image: ghcr.io/soluto/oidc-server-mock:latest
+environment:
+  ASPNETCORE_ENVIRONMENT: Development
+  ASPNETCORE_URLS: http://+:80
+  SERVER_OPTIONS_INLINE: |
+    {
+        "AccessTokenJwtType": "JWT",
+        "Discovery": {
+            "ShowKeySet": true
+        }
+    }
+  API_SCOPES_INLINE: '[]'
+  API_RESOURCES_INLINE: '[]'
+  USERS_CONFIGURATION_INLINE: '[]'
+  CLIENTS_CONFIGURATION_INLINE: |
+    [
+        {
+            "ClientId": "<%= serviceName %>-client-id",
+            "ClientSecrets": ["<%= serviceName %>-client-secret"],
+            "Description": "<%= serviceName %>",
+            "AllowedGrantTypes": ["client_credentials"],
+            "AllowedScopes": [],
+            "ClientClaimsPrefix": "",
+            "Claims": []
+        }
+    ]
+ports:
+  - 8081:80

@@ -1,0 +1,15 @@
+import fetch from 'node-fetch';
+
+describe('<%= project %>', () => {
+  it('should have a functioning hello world', async () => {
+    const res = await fetch('http://localhost:<%= port %>', {
+      headers: {
+        ['x-api-client']: 'blackbox',
+        ['x-api-client-version']: '1.0.0',
+      },
+    });
+
+    const json = await res.json();
+    expect(json).toMatchObject({ message: 'Welcome to <%= project %>!' });
+  });
+});

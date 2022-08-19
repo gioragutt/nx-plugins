@@ -1,0 +1,107 @@
+import { WireMockRestClient } from 'wiremock-rest-client';
+
+export const wiremock = new WireMockRestClient('http://localhost:8080');
+
+export const resetMocks = async () => {
+  await wiremock.global.resetAll();
+};
+
+interface WrapApiCallParams<
+  MockArgs extends any[] = any[],
+  FailArgs extends any[] = any[]
+> {
+  name: string;
+  method: string;
+  mock(...args: MockArgs): { url: string; response?: any };
+  fail(
+    ...args: FailArgs
+  ): string | { url: string; response?: any; statusCode?: number };
+}
+
+export function wrapApiCall<Params extends WrapApiCallParams>(params: Params) {
+  let stubUrl: string | undefined;
+
+  return {
+    async mock(...args: Parameters<Params['mock']>) {
+      const { url, response } = params.mock(...args);
+      await wiremock.mappings.createMapping({
+        request: {
+          urlPath: url,
+          method: params.method,
+        },
+        response: {
+          jsonBody: response ?? undefined,
+          status: 200,
+        },
+      });
+      stubUrl = url;
+    },
+    async fail(...args: Parameters<Params['fail']>) {
+      let failResponse = params.fail(...args);
+      failResponse =
+        typeof failResponse === 'string' ? { url: failResponse } : failResponse;
+      const { url, response, statusCode } = failResponse;
+
+      await wiremock.mappings.createMapping({
+        request: {
+          urlPath: url,
+          method: params.method,
+        },
+        response: {
+          jsonBody: response ?? undefined,
+          status: statusCode ?? 500,
+        },
+      });
+    },
+    async getCalls() {
+      if (!stubUrl) {
+        throw new Error(`${params.name} not called`);
+      }
+      const { requests } = await wiremock.requests.findRequests({
+        urlPath: stubUrl,
+      });
+      return requests;
+    },
+  };
+}
+
+/**
+ * This is a wrapper object to mock calls to an api.
+ */
+export const exampleApi = {
+  example: wrapApiCall({
+    /** Used for error messages */
+    name: 'exampleApi.example',
+
+    method: 'GET',
+
+    /**
+     * Calling `mock` sets up a successful request.
+     *
+     * @example
+     *
+     * ```ts
+     * await exampleApi.example.mock('some-id', {hello: 'world'});
+     * const response = await fetch('http://localhost:8080/example-api/some-id').then(r => r.json())
+     * expect(response).toStrictEqual({hello: 'world'});
+     * ```
+     */
+    mock: (id: string, response: any) => ({
+      url: `/example-api/${id}`,
+      response,
+    }),
+
+    /**
+     * Calling `fail` sets up a failed request.
+     *
+     * @example
+     *
+     * ```ts
+     * await exampleApi.example.fail('some-id');
+     * const response = await fetch('http://localhost:8080/example-api/some-id')
+     * expect(response).toMatchObject({ok: false, status: 400});
+     * ```
+     */
+    fail: (id: string) => ({ url: `/example-api/${id}`, statusCode: 400 }),
+  }),
+};

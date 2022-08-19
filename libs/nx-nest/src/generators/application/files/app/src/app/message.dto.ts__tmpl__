@@ -1,0 +1,25 @@
+import { IsString } from 'class-validator';
+
+/**
+ * DTOs are classes that describe the inputs and outputs of our applications.
+ *
+ * We do need need to instantiate instances of these classes.
+ * We can treat them like interfaces in our code.
+ *
+ * However, the reason we use classes for DTOs is because they line in the runtime,
+ * And can hold valuable information, like metadata and validation rules.
+ *
+ * Read more at:
+ *   * https://docs.nestjs.com/techniques/validation
+ *   * https://docs.nestjs.com/openapi/introduction
+ *
+ * By default, DTOs need to be in dedicated files (.dto.ts) so that the swagger plugin will
+ * Pick them up and show them in the swagger document.
+ */
+export class MessageDto {
+  /**
+   * This description will appear in the swagger document.
+   */
+  @IsString()
+  message: string;
+}
